@@ -1,0 +1,80 @@
+/* Përmirësimi i stilit për ion-header dhe ion-toolbar */
+ion-header {
+    background-color: #3880ff;
+    color: white;
+  }
+  
+  ion-toolbar {
+    --background: #3880ff; /* Ngjyra e toolbar */
+    --color: white; /* Ngjyra e tekstit në toolbar */
+  }
+  
+  ion-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    
+  }
+  
+  /* Stilizimi i butonave për ndërrimin e gjuhës */
+  ion-button {
+    --background: #4caf50; /* Ngjyra e gjelbër për butonin */
+    --color: white; /* Ngjyra e tekstit në buton */
+    --border-radius: 12px;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    width: 80%; /* Gjerësi për ta bërë butonin më të madh */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Hije e butë për buton */
+    transition: all 0.3s ease;
+  }
+  
+  ion-button:hover {
+    --background: #45a049; /* Ngjyra më e errët kur kaloni miun mbi buton */
+    transform: scale(1.05); /* Efekti i madhësisë kur kaloni miun */
+  }
+  
+  /* Stilizimi i përmbajtjes (ion-content) */
+  ion-content {
+    padding: 20px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Shtimi i një efekti për shkrimin në paragrafë */
+  p:before {
+    content: '🔊';
+    margin-right: 10px;
+  }
+  
+  /* Përmirësimi i stilit për gjithë përmbajtjen dhe qendrimin e elementeve */
+  ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ion-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  

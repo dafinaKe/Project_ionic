@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'greetings.welcome' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Butoni për ndërrimin e gjuhës -->
+  <ion-button (click)="changeLanguage()">
+    {{ language === 'en' ? 'Switch to Shqip' : 'Switch to English' }}
+  </ion-button>
+
+  <!-- Përdorimi i përkthimeve për fraza -->
+  <p>{{ 'common_phrases.where_is_the_hotel' | translate }}</p>
+  <p>{{ 'common_phrases.how_much_is_this' | translate }}</p>
+</ion-content>

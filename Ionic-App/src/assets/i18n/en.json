@@ -1,0 +1,10 @@
+{
+"login":"Log in",
+"greetings": {
+    "welcome": "Welcome"
+  },
+  "common_phrases": {
+    "where_is_the_hotel": "Where is the hotel?",
+    "how_much_is_this": "How much is this?"
+  }
+}

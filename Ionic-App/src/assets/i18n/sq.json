@@ -1,0 +1,10 @@
+{
+"login":"Kyqu",
+"greetings": {
+    "welcome": "Mirësevini"
+  },
+  "common_phrases": {
+    "where_is_the_hotel": "Ku është hoteli?",
+    "how_much_is_this": "Sa kushton kjo?"
+  }
+}

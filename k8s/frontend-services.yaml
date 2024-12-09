@@ -1,0 +1,16 @@
+# Frontend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ionic-app-service
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: ionic-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30000 # Optional: Kubernetes will assign a port if omitted
+

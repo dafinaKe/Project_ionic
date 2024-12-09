@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Appointments
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Button to open modal -->
+  <ion-button id="open-modal" (click)="openModal()" expand="block">Add New Appointment</ion-button>
+
+  <!-- Modal for adding a new appointment -->
+  <ion-modal [isOpen]="isOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Add Appointment</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <!-- Input fields for appointment details -->
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input [(ngModel)]="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input [(ngModel)]="lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Location</ion-label>
+          <ion-input [(ngModel)]="location"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Age</ion-label>
+          <ion-input type="number" [(ngModel)]="age"></ion-input>
+        </ion-item>
+
+        <!-- Button to add the new appointment -->
+        <ion-button expand="block" (click)="addNewContactPerson()">Add Appointment</ion-button>
+        <ion-button expand="block" (click)="openModal()">Cancel</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Displaying the list of appointments -->
+  <div *ngFor="let appointment of listOfContactPersons">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ appointment.name }} {{ appointment.lastName }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Location:</strong> {{ appointment.location }}</p>
+        <p><strong>Age:</strong> {{ appointment.age }}</p>
+
+        <!-- Delete button to remove the appointment -->
+        <ion-button color="danger" (click)="deleteAppointment(appointment.appointmentId)" expand="block">Delete</ion-button>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

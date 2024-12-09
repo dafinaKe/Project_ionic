@@ -1,0 +1,50 @@
+services:
+  frontend:
+    build:
+      context: ./Ionic-App
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"  # Frontend exposes port 80
+    depends_on:
+      - backend
+    container_name: frontend-container
+    networks:
+      - productnetwork
+
+  backend:
+    build:
+      context: ./Taxi_APP
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      - mssql
+    container_name: backend-container
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_SERVER=mssql
+      - DB_NAME=TaxiApp
+      - DB_USER=sa 
+      - DB_PASSWORD=Ditelindja123.
+    networks:
+      - productnetwork
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1434:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Ditelindja123.  # This password is needed for SQL Server initialization
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    networks:
+      - productnetwork
+
+networks:
+  productnetwork:
+    driver: bridge
+
+volumes:
+  sqlvolume:

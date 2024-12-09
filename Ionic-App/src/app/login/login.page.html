@@ -1,0 +1,28 @@
+<div class="form">
+  <div class="loginInfo">
+    <ion-input 
+      [(ngModel)]="email" 
+      type="email" 
+      placeholder="Shkruani emailin" 
+      class="input-field">
+    </ion-input>
+    <ion-input 
+      [(ngModel)]="password" 
+      type="password" 
+      placeholder="Shkruani fjalëkalimin" 
+      class="input-field">
+    </ion-input>
+    <ion-button 
+      (click)="login()" 
+      expand="block" 
+      class="login-button">
+      {{ 'login' | translate }}
+    </ion-button>
+    <ion-button 
+      (click)="languageChange()" 
+      expand="block" 
+      class="language-button">
+      Ndrysho Gjuhën
+    </ion-button>
+  </div>
+</div>
