@@ -30,7 +30,7 @@ jobs:
     # Build and push backend Docker image
     - name: Build and push backend Docker image
       run: |
-        docker build -t dafina22/atwork-backend:latest -f ./Dockerfile ./Taxi_APP
+        docker build -t dafina22/atwork-backend:latest -f ./Taxi_APP/Dockerfile ./Taxi_APP
         docker push dafina22/atwork-backend:latest
 
     # Step 3: Set up kubectl for Kubernetes
