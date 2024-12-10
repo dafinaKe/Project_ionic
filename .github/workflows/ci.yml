@@ -32,27 +32,3 @@ jobs:
       run: |
         docker build -t dafina22/atwork-backend:latest -f ./Taxi_APP/Dockerfile ./Taxi_APP
         docker push dafina22/atwork-backend:latest
-
-    # Step 3: Set up kubectl for Kubernetes
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: 'latest'
-
-    # Step 4: Configure kubeconfig from secret
-    - name: Configure kubeconfig
-      run: |
-        echo "${{ secrets.KUBECONFIG_CONTENT }}" > kubeconfig.yaml
-        export KUBECONFIG=kubeconfig.yaml
-
-    # Step 5: Deploy the frontend to Kubernetes
-    - name: Deploy Frontend to Kubernetes
-      run: kubectl apply -f ./k8s/frontend-deployment.yaml
-
-    # Step 6: Deploy the backend to Kubernetes
-    - name: Deploy Backend to Kubernetes
-      run: kubectl apply -f ./k8s/backend-deployment.yaml
-
-    # Step 7: Deploy the database to Kubernetes
-    - name: Deploy Database to Kubernetes
-      run: kubectl apply -f ./k8s/database-deployment.yaml
