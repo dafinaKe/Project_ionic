@@ -1,0 +1,58 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the pipeline on push to the main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Checkout the repository code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Docker and build Docker images
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}  # Docker Hub username stored in secrets
+        password: ${{ secrets.DOCKER_PASSWORD }}  # Docker Hub password stored in secrets
+
+    # Build and push frontend Docker image
+    - name: Build and push frontend Docker image
+      run: |
+        docker build -t dafina22/atwork-frontend:latest -f ./k8s/Dockerfile ./Ionic-App/atwork
+        docker push dafina22/atwork-frontend:latest
+
+    # Build and push backend Docker image
+    - name: Build and push backend Docker image
+      run: |
+        docker build -t dafina22/my-backend-image:latest -f ./k82/Dockerfile ./Taxi_APP/atwork
+        docker push dafina22/atwork-backend:latest
+
+    # Step 3: Set up kubectl for Kubernetes
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'  # Install the latest version of kubectl
+
+    # Step 4: Configure kubeconfig from secret
+    - name: Configure kubeconfig
+      run: |
+        echo "${{ secrets.KUBECONFIG_CONTENT }}" > kubeconfig.yaml
+        export KUBECONFIG=kubeconfig.yaml
+
+    # Step 5: Deploy the frontend to Kubernetes
+    - name: Deploy Frontend to Kubernetes
+      run: kubectl apply -f ./atwork/k8s/frontend-deployment.yaml
+
+    # Step 6: Deploy the backend to Kubernetes
+    - name: Deploy Backend to Kubernetes  
+      run: kubectl apply -f ./atwork/k8s/backend-deployment.yaml
+
+    # Step 7: Deploy the database to Kubernetes
+    - name: Deploy Database to Kubernetes
+      run: kubectl apply -f ./atwork/k8s/database-deployment.yaml
